@@ -6,17 +6,17 @@ with open("README.md") as fp:
 
 
 setuptools.setup(
-    name="security_incident_response_remediate_weak_s3_policy",
+    name="security_automation_remediate_weak_s3_policy",
     version="0.0.1",
 
-    description="An empty CDK Python app",
+    description="Security automation to remediate weak s3 bucket policy",
     long_description=long_description,
     long_description_content_type="text/markdown",
 
-    author="author",
+    author="Mystique",
 
-    package_dir={"": "security_incident_response_remediate_weak_s3_policy"},
-    packages=setuptools.find_packages(where="security_incident_response_remediate_weak_s3_policy"),
+    package_dir={"": "remediate_weak_s3_policy"},
+    packages=setuptools.find_packages(where="remediate_weak_s3_policy"),
 
     install_requires=[
         "aws-cdk.core",

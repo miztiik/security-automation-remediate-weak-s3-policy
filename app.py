@@ -2,10 +2,10 @@
 
 from aws_cdk import core
 
-from security_incident_response_remediate_weak_s3_policy.security_incident_response_remediate_weak_s3_policy_stack import SecurityIncidentResponseRemediateWeakS3PolicyStack
+from remediate_weak_s3_policy.remediate_weak_s3_policy import RemediateWeakS3PolicyStack
 
 
 app = core.App()
-SecurityIncidentResponseRemediateWeakS3PolicyStack(app, "security-incident-response-remediate-weak-s3-policy")
+RemediateWeakS3PolicyStack(app, "security-automation-remediate-weak-s3-policy")
 
 app.synth()

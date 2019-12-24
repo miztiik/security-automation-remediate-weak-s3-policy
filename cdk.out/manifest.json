@@ -1,0 +1,532 @@
+{
+  "version": "1.16.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "security-automation-remediate-weak-s3-policy": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "security-automation-remediate-weak-s3-policy.template.json"
+      },
+      "metadata": {
+        "/security-automation-remediate-weak-s3-policy/policyStrengthCheckerFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "policyStrengthCheckerFnServiceRoleCD1B779A",
+            "trace": [
+              "new Role (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:35:22)",
+              "new Function (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-lambda/lib/function.js:59:35)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/policyStrengthCheckerFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "policyStrengthCheckerFnFC3801C6",
+            "trace": [
+              "new Function (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-lambda/lib/function.js:69:26)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getPreviousBucketPolicyFnServiceRoleDF2937E1",
+            "trace": [
+              "new Role (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:35:22)",
+              "new Function (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-lambda/lib/function.js:59:35)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyFn/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getPreviousBucketPolicyFnServiceRoleDefaultPolicy3BC68247",
+            "trace": [
+              "new Policy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/policy.js:29:26)",
+              "Role.addToPolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:153:34)",
+              "Function.addToRolePolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:37:19)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7588:51",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7588:25",
+              "Kernel._ensureSync (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8197:20)",
+              "Kernel.invoke (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7587:26)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "getPreviousBucketPolicyFnE629F282",
+            "trace": [
+              "new Function (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-lambda/lib/function.js:69:26)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/putPolicyFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "putPolicyFnServiceRole7DE6EA55",
+            "trace": [
+              "new Role (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:35:22)",
+              "new Function (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-lambda/lib/function.js:59:35)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/putPolicyFn/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "putPolicyFnServiceRoleDefaultPolicy682E48B1",
+            "trace": [
+              "new Policy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/policy.js:29:26)",
+              "Role.addToPolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:153:34)",
+              "Function.addToRolePolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-lambda/lib/function-base.js:37:19)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7588:51",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7588:25",
+              "Kernel._ensureSync (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8197:20)",
+              "Kernel.invoke (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7587:26)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/putPolicyFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "putPolicyFn8D109BDA",
+            "trace": [
+              "new Function (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-lambda/lib/function.js:69:26)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/stateMachineId/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "stateMachineIdRole62656937",
+            "trace": [
+              "new Role (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:35:22)",
+              "new StateMachine (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-stepfunctions/lib/state-machine.js:44:35)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/stateMachineId/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "stateMachineIdRoleDefaultPolicy0EA5EE64",
+            "trace": [
+              "new Policy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/policy.js:29:26)",
+              "Role.addToPolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:153:34)",
+              "StateMachine.addToRolePolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-stepfunctions/lib/state-machine.js:69:19)",
+              "new StateMachine (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-stepfunctions/lib/state-machine.js:55:18)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/stateMachineId/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "stateMachineIdF7FDD688",
+            "trace": [
+              "new StateMachine (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-stepfunctions/lib/state-machine.js:49:26)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/stateMachineId/EventsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "stateMachineIdEventsRoleF8F21970",
+            "trace": [
+              "new Role (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:35:22)",
+              "Object.singletonEventRole (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-events-targets/lib/util.js:16:18)",
+              "SfnStateMachine.bind (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-events-targets/lib/state-machine.js:22:26)",
+              "Rule.addTarget (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-events/lib/rule.js:68:36)",
+              "new Rule (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-events/lib/rule.js:42:18)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/stateMachineId/EventsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "stateMachineIdEventsRoleDefaultPolicy3AEB44AC",
+            "trace": [
+              "new Policy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/policy.js:29:26)",
+              "Role.addToPolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:153:34)",
+              "Array.forEach (<anonymous>)",
+              "Object.singletonEventRole (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-events-targets/lib/util.js:19:22)",
+              "SfnStateMachine.bind (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-events-targets/lib/state-machine.js:22:26)",
+              "Rule.addTarget (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-events/lib/rule.js:68:36)",
+              "new Rule (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-events/lib/rule.js:42:18)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/puts3PolicyEventId/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "puts3PolicyEventId651E4323",
+            "trace": [
+              "new Rule (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-events/lib/rule.js:25:26)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/s3bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "s3bucketFBFA637E",
+            "trace": [
+              "new Bucket (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-s3/lib/bucket.js:366:26)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/s3DataEventTrailId/S3/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "s3DataEventTrailIdS31824FE76",
+            "trace": [
+              "new Bucket (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-s3/lib/bucket.js:366:26)",
+              "new Trail (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-cloudtrail/lib/index.js:40:41)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/s3DataEventTrailId/S3/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "s3DataEventTrailIdS3Policy031BF760",
+            "trace": [
+              "new BucketPolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-s3/lib/bucket-policy.js:21:9)",
+              "Bucket.addToResourcePolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-s3/lib/bucket.js:125:27)",
+              "new Trail (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-cloudtrail/lib/index.js:41:23)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/s3DataEventTrailId/LogGroup": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "s3DataEventTrailIdLogGroupF8E9EB3D",
+            "trace": [
+              "new Trail (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-cloudtrail/lib/index.js:57:24)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/s3DataEventTrailId/LogsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "s3DataEventTrailIdLogsRoleCBDEF077",
+            "trace": [
+              "new Role (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:35:22)",
+              "new Trail (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-cloudtrail/lib/index.js:60:24)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/s3DataEventTrailId/LogsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "s3DataEventTrailIdLogsRoleDefaultPolicy2CEFFC33",
+            "trace": [
+              "new Policy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/policy.js:29:26)",
+              "Role.addToPolicy (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-iam/lib/role.js:153:34)",
+              "new Trail (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-cloudtrail/lib/index.js:61:22)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/s3DataEventTrailId/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "s3DataEventTrailId328979E4",
+            "trace": [
+              "new Trail (/private/var/folders/p1/k7383fss0nvfk4rm12tjsvlhr68wd0/T/jsii-kernel-loO4kb/node_modules/@aws-cdk/aws-cloudtrail/lib/index.js:74:23)",
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/MonitoredS3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MonitoredS3Bucket",
+            "trace": [
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/CloudTrailForS3": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CloudTrailForS3",
+            "trace": [
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/S3PolicyValidatorStateMachine": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "S3PolicyValidatorStateMachine",
+            "trace": [
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/sampleWeakS3Policy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "sampleWeakS3Policy",
+            "trace": [
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ],
+        "/security-automation-remediate-weak-s3-policy/sampleRestrictiveS3Policy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "sampleRestrictiveS3Policy",
+            "trace": [
+              "/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:49",
+              "Kernel._wrapSandboxCode (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:8221:20)",
+              "Kernel._create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7761:26)",
+              "Kernel.create (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7508:21)",
+              "KernelHost.processRequest (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7296:28)",
+              "KernelHost.run (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7236:14)",
+              "Immediate._onImmediate (/Users/nks/Documents/nks/personal/git-repos/security-automation-remediate-weak-s3-policy/.env/lib/python3.7/site-packages/jsii/_embedded/jsii/jsii-runtime.js:7239:37)",
+              "processImmediate (internal/timers.js:439:21)"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "libraries": {
+      "@aws-cdk/cx-api": "1.19.0",
+      "@aws-cdk/core": "1.19.0",
+      "@aws-cdk/region-info": "1.19.0",
+      "@aws-cdk/aws-iam": "1.19.0",
+      "@aws-cdk/aws-cloudwatch": "1.19.0",
+      "@aws-cdk/aws-kms": "1.19.0",
+      "@aws-cdk/aws-ssm": "1.19.0",
+      "@aws-cdk/aws-ec2": "1.19.0",
+      "@aws-cdk/aws-events": "1.19.0",
+      "@aws-cdk/aws-logs": "1.19.0",
+      "@aws-cdk/aws-s3": "1.19.0",
+      "@aws-cdk/assets": "1.19.0",
+      "@aws-cdk/aws-s3-assets": "1.19.0",
+      "@aws-cdk/aws-sqs": "1.19.0",
+      "@aws-cdk/aws-lambda": "1.19.0",
+      "@aws-cdk/aws-sns": "1.19.0",
+      "@aws-cdk/aws-cloudformation": "1.19.0",
+      "@aws-cdk/aws-codecommit": "1.19.0",
+      "@aws-cdk/aws-ecr": "1.19.0",
+      "@aws-cdk/aws-ecr-assets": "1.19.0",
+      "@aws-cdk/aws-secretsmanager": "1.19.0",
+      "@aws-cdk/aws-codebuild": "1.19.0",
+      "@aws-cdk/aws-codepipeline": "1.19.0",
+      "@aws-cdk/aws-autoscaling-common": "1.19.0",
+      "@aws-cdk/aws-applicationautoscaling": "1.19.0",
+      "@aws-cdk/aws-elasticloadbalancing": "1.19.0",
+      "@aws-cdk/aws-route53": "1.19.0",
+      "@aws-cdk/aws-certificatemanager": "1.19.0",
+      "@aws-cdk/aws-elasticloadbalancingv2": "1.19.0",
+      "@aws-cdk/aws-autoscaling": "1.19.0",
+      "@aws-cdk/aws-sns-subscriptions": "1.19.0",
+      "@aws-cdk/aws-autoscaling-hooktargets": "1.19.0",
+      "@aws-cdk/aws-apigateway": "1.19.0",
+      "@aws-cdk/aws-cloudfront": "1.19.0",
+      "@aws-cdk/aws-route53-targets": "1.19.0",
+      "@aws-cdk/aws-servicediscovery": "1.19.0",
+      "@aws-cdk/aws-ecs": "1.19.0",
+      "@aws-cdk/aws-stepfunctions": "1.19.0",
+      "@aws-cdk/aws-events-targets": "1.19.0",
+      "@aws-cdk/aws-stepfunctions-tasks": "1.19.0",
+      "@aws-cdk/aws-cloudtrail": "1.19.0",
+      "jsii-runtime": "Python/3.7.5"
+    }
+  }
+}

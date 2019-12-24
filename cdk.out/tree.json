@@ -1,0 +1,925 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree"
+      },
+      "security-automation-remediate-weak-s3-policy": {
+        "id": "security-automation-remediate-weak-s3-policy",
+        "path": "security-automation-remediate-weak-s3-policy",
+        "children": {
+          "policyStrengthCheckerFn": {
+            "id": "policyStrengthCheckerFn",
+            "path": "security-automation-remediate-weak-s3-policy/policyStrengthCheckerFn",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "security-automation-remediate-weak-s3-policy/policyStrengthCheckerFn/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "security-automation-remediate-weak-s3-policy/policyStrengthCheckerFn/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "Owner",
+                            "value": "MystiqueInfoSecurity"
+                          },
+                          {
+                            "key": "ToKnowMore",
+                            "value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "security-automation-remediate-weak-s3-policy/policyStrengthCheckerFn/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "zipFile": "# -*- coding: utf-8 -*-\n\"\"\"\n.. module: check_policy_strength\n    :Actions: Check if policy has wildcard (\"*\") permissions\n    :platform: AWS\n    :copyright: (c) 2020 Mystique.,\n    :license: Apache, see LICENSE for more details.\n.. moduleauthor:: Mystique\n.. contactauthor:: miztiik@github issues\n\"\"\"\n\nimport boto3\nimport os\nimport json\nfrom botocore.exceptions import ClientError\nimport logging\n\n__author__      = 'Mystique'\n__email__       = 'miztiik@github'\n__version__     = '0.0.1'\n__status__      = 'production'\n\n\"\"\"\nGENERIC HELPERS\n\"\"\"\n\nclass global_args:\n    \"\"\"\n    Helper to define global statics\n    \"\"\"\n    OWNER                       = 'Mystique'\n    ENVIRONMENT                 = 'production'\n    REGION_NAME                 = 'us-east-1'\n    TAG_NAME                    = 'put_policy'\n    LOG_LEVEL                   = logging.INFO\n\ndef set_logging(lv=global_args.LOG_LEVEL):\n    '''\n    Helper to enable debugging\n    '''\n    logging.basicConfig(level=lv)\n    logger = logging.getLogger()\n    logger.setLevel(global_args.LOG_LEVEL)\n    # logging.basicConfig(format=\"[%(asctime)s] %(levelname)s [%(module)s.%(funcName)s:%(lineno)d] %(message)s\", datefmt=\"%H:%M:%S\"\n    return logger\n\n# Initialize Logger\nlogger = set_logging(logging.INFO)\n\n\ndef check_policy_strength(policy):\n    # Default we are ASSUMING the policy will be compliant\n    policy_status = { \"is_compliant\": True }\n\n    for st in policy['Statement']:\n      actions = st['Action']\n    \n      if isinstance(actions, str):\n        actions = [actions]\n    \n      if st['Effect'] == 'Allow' and st['Principal'] == '*':\n          for action in actions:\n              parts = action.split(':')\n              service = parts[0]\n              call = parts[1]\n              if call.startswith('Get') or call.startswith('Put'):\n                  policy_status = { \n                      \"is_compliant\": False, \n                      \"reason\": \"Excessive permissive statement detected\", \n                      \"statement\": st \n                  }\n    return policy_status\n\n\ndef lambda_handler(event, context):\n    logger.info(f\"Event:{event}\")\n    resp = {'status':False}\n    EVENT_TYPE=\"PutBucketPolicy\"\n    if 'detail' in event and 'eventName' in event.get('detail'):\n        if event.get('detail').get('eventName') == EVENT_TYPE:\n            new_policy = event.get('detail').get('requestParameters').get('bucketPolicy')\n            resp['resource_id'] = event.get('detail').get('requestParameters').get('bucketName')\n            if new_policy:\n                resp['policy_status'] = check_policy_strength(new_policy)\n                resp['status'] = True\n            else:\n                resp['error_message'] = f\"No bucket policy found\"\n    return resp\n\nif __name__ == '__main__':\n    lambda_handler({}, {})"
+                    },
+                    "handler": "index.lambda_handler",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "policyStrengthCheckerFnServiceRoleCD1B779A",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "python3.7",
+                    "functionName": "check_policy_strength_fn",
+                    "tags": [
+                      {
+                        "key": "Owner",
+                        "value": "MystiqueInfoSecurity"
+                      },
+                      {
+                        "key": "ToKnowMore",
+                        "value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
+                      }
+                    ],
+                    "timeout": 5
+                  }
+                }
+              }
+            }
+          },
+          "getPreviousBucketPolicyFn": {
+            "id": "getPreviousBucketPolicyFn",
+            "path": "security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyFn",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyFn/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyFn/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "Owner",
+                            "value": "MystiqueInfoSecurity"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyFn/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyFn/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "config:GetResourceConfigHistory",
+                                  "Effect": "Allow",
+                                  "Resource": "*",
+                                  "Sid": "GetPreviouBucketPolicy"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "getPreviousBucketPolicyFnServiceRoleDefaultPolicy3BC68247",
+                            "roles": [
+                              {
+                                "Ref": "getPreviousBucketPolicyFnServiceRoleDF2937E1"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyFn/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "zipFile": "# -*- coding: utf-8 -*-\n\"\"\"\n.. module: get_previous_bucket_policy\n    :Actions: get_previous_bucket_policy for given resource\n    :platform: AWS\n    :copyright: (c) 2020 Mystique.,\n    :license: Apache, see LICENSE for more details.\n.. moduleauthor:: Mystique\n.. contactauthor:: miztiik@github issues\n\"\"\"\n\nimport boto3\nimport os\nimport json\nfrom botocore.exceptions import ClientError\nimport logging\n\n\n__author__      = 'Mystique'\n__email__       = 'miztiik@github'\n__version__     = '0.0.1'\n__status__      = 'production'\n\n\"\"\"\nGENERIC HELPERS\n\"\"\"\n\nclass global_args:\n    \"\"\"\n    Helper to define global statics\n    \"\"\"\n    OWNER                       = 'Mystique'\n    ENVIRONMENT                 = 'production'\n    REGION_NAME                 = 'us-east-1'\n    TAG_NAME                    = 'put_policy'\n    LOG_LEVEL                   = logging.INFO\n\n\ndef set_logging(lv=global_args.LOG_LEVEL):\n    '''\n    Helper to enable debugging\n    '''\n    logging.basicConfig(level=lv)\n    logger = logging.getLogger()\n    logger.setLevel(global_args.LOG_LEVEL)\n    # logging.basicConfig(format=\"[%(asctime)s] %(levelname)s [%(module)s.%(funcName)s:%(lineno)d] %(message)s\", datefmt=\"%H:%M:%S\"\n    return logger\n\n# Initialize Logger\nlogger = set_logging(logging.INFO)\n\n\ndef lambda_handler(event, context):\n    resp = {'status': False, 'prev_bucket_policy':{}}\n    logger.info(f\"Event:{event}\")\n    client = boto3.client('config')\n    try:\n        response = client.get_resource_config_history(\n            resourceType='AWS::S3::Bucket',\n            resourceId=event['resource_id'],\n            # resourceId=event.get('id')\n            limit=1\n        )\n        last_config = response['configurationItems'][0]\n        policy_obj = json.loads(last_config['supplementaryConfiguration']['BucketPolicy'])\n        \n        # Buckets can have empty policy - so previous policy can be NONE\n        if policy_obj['policyText']:\n            resp['prev_bucket_policy'] = json.loads(policy_obj['policyText'])\n        resp['resource_id'] = event['resource_id']\n        resp['status'] = True\n    except Exception as e:\n        logger.error(\"Unable to get previous bucket policy\")\n        logger.error(f\"ERROR:{str(e)}\")\n        resp['error_message'] = str(e)\n    return resp\n\n\nif __name__ == '__main__':\n    lambda_handler({}, {})"
+                    },
+                    "handler": "index.lambda_handler",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "getPreviousBucketPolicyFnServiceRoleDF2937E1",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "python3.7",
+                    "functionName": "get_previous_bucket_policy_fn",
+                    "tags": [
+                      {
+                        "key": "Owner",
+                        "value": "MystiqueInfoSecurity"
+                      }
+                    ],
+                    "timeout": 5
+                  }
+                }
+              }
+            }
+          },
+          "putPolicyFn": {
+            "id": "putPolicyFn",
+            "path": "security-automation-remediate-weak-s3-policy/putPolicyFn",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "security-automation-remediate-weak-s3-policy/putPolicyFn/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "security-automation-remediate-weak-s3-policy/putPolicyFn/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "Owner",
+                            "value": "MystiqueInfoSecurity"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "security-automation-remediate-weak-s3-policy/putPolicyFn/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "security-automation-remediate-weak-s3-policy/putPolicyFn/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:PutBucketPolicy",
+                                    "s3:DeleteBucketPolicy"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": "arn:aws:s3:::*",
+                                  "Sid": "PutBucketPolicy"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "putPolicyFnServiceRoleDefaultPolicy682E48B1",
+                            "roles": [
+                              {
+                                "Ref": "putPolicyFnServiceRole7DE6EA55"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "security-automation-remediate-weak-s3-policy/putPolicyFn/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "zipFile": "# -*- coding: utf-8 -*-\n\"\"\"\n.. module: put_policy\n    :Actions: PUTS the given policy for the given resource\n    :platform: AWS\n    :copyright: (c) 2020 Mystique.,\n    :license: Apache, see LICENSE for more details.\n.. moduleauthor:: Mystique\n.. contactauthor:: miztiik@github issues\n\"\"\"\n\nimport boto3\nimport os\nimport json\nfrom botocore.exceptions import ClientError\nimport logging\n\n\n__author__      = 'Mystique'\n__email__       = 'miztiik@github'\n__version__     = '0.0.1'\n__status__      = 'production'\n\n\"\"\"\nGENERIC HELPERS\n\"\"\"\n\nclass global_args:\n    \"\"\"\n    Helper to define global statics\n    \"\"\"\n    OWNER                       = 'Mystique'\n    ENVIRONMENT                 = 'production'\n    REGION_NAME                 = 'us-east-1'\n    TAG_NAME                    = 'put_policy'\n    LOG_LEVEL                   = logging.INFO\n\n\ndef set_logging(lv=global_args.LOG_LEVEL):\n    '''\n    Helper to enable debugging\n    '''\n    logging.basicConfig(level=lv)\n    logger = logging.getLogger()\n    logger.setLevel(global_args.LOG_LEVEL)\n    # logging.basicConfig(format=\"[%(asctime)s] %(levelname)s [%(module)s.%(funcName)s:%(lineno)d] %(message)s\", datefmt=\"%H:%M:%S\"\n    return logger\n\n\n# Initialize Logger\nlogger = set_logging(logging.INFO)\n\n\ndef put_policy(bucket, policy):\n    resp = {'status': False}\n\n    client = boto3.client('s3')\n    try:\n        # At times buckets have null - {} policy\n        if policy:\n            resp['message'] = client.put_bucket_policy(\n                Bucket=bucket,\n                Policy=json.dumps(policy)\n            )\n        else:\n            resp['message'] = client.delete_bucket_policy(\n                Bucket=bucket\n            )\n        resp['status'] = True\n    except Exception as e:\n        logger.error(\"Unable to put bucket policy\")\n        logger.error(f\"ERROR:{str(e)}\")\n        resp['error_message'] = str(e)\n    return resp\n\n\ndef lambda_handler(event, context):\n    bucket_name = event.get('resource_id')\n    policy = event.get('prev_bucket_policy')\n    resp = event\n    resp['response'] = put_policy(bucket_name, policy)\n    # Mov status from response to parent dict - silently\n    resp['status'] = resp['response'].pop('status', None)\n    return resp\n \n\nif __name__ == '__main__':\n    lambda_handler({}, {})"
+                    },
+                    "handler": "index.lambda_handler",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "putPolicyFnServiceRole7DE6EA55",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "python3.7",
+                    "functionName": "put_policy_fn",
+                    "tags": [
+                      {
+                        "key": "Owner",
+                        "value": "MystiqueInfoSecurity"
+                      }
+                    ],
+                    "timeout": 5
+                  }
+                }
+              }
+            }
+          },
+          "checkBucketPolicyTaskId": {
+            "id": "checkBucketPolicyTaskId",
+            "path": "security-automation-remediate-weak-s3-policy/checkBucketPolicyTaskId"
+          },
+          "getPreviousBucketPolicyTask": {
+            "id": "getPreviousBucketPolicyTask",
+            "path": "security-automation-remediate-weak-s3-policy/getPreviousBucketPolicyTask"
+          },
+          "restoreLastPolicyTask": {
+            "id": "restoreLastPolicyTask",
+            "path": "security-automation-remediate-weak-s3-policy/restoreLastPolicyTask"
+          },
+          "Policy Remediation Failed": {
+            "id": "Policy Remediation Failed",
+            "path": "security-automation-remediate-weak-s3-policy/Policy Remediation Failed"
+          },
+          "Policy Compliant": {
+            "id": "Policy Compliant",
+            "path": "security-automation-remediate-weak-s3-policy/Policy Compliant"
+          },
+          "isPolicyRemediationComplete?": {
+            "id": "isPolicyRemediationComplete?",
+            "path": "security-automation-remediate-weak-s3-policy/isPolicyRemediationComplete?"
+          },
+          "Wait X Minutes - AWS Config Lags Step Function": {
+            "id": "Wait X Minutes - AWS Config Lags Step Function",
+            "path": "security-automation-remediate-weak-s3-policy/Wait X Minutes - AWS Config Lags Step Function"
+          },
+          "isPolicyAccetable?": {
+            "id": "isPolicyAccetable?",
+            "path": "security-automation-remediate-weak-s3-policy/isPolicyAccetable?"
+          },
+          "stateMachineId": {
+            "id": "stateMachineId",
+            "path": "security-automation-remediate-weak-s3-policy/stateMachineId",
+            "children": {
+              "Role": {
+                "id": "Role",
+                "path": "security-automation-remediate-weak-s3-policy/stateMachineId/Role",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "security-automation-remediate-weak-s3-policy/stateMachineId/Role/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "states.",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ".amazonaws.com"
+                                    ]
+                                  ]
+                                }
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "Owner",
+                            "value": "MystiqueInfoSecurity"
+                          },
+                          {
+                            "key": "ToKnowMore",
+                            "value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "security-automation-remediate-weak-s3-policy/stateMachineId/Role/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "security-automation-remediate-weak-s3-policy/stateMachineId/Role/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "lambda:InvokeFunction",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "policyStrengthCheckerFnFC3801C6",
+                                      "Arn"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "lambda:InvokeFunction",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "putPolicyFn8D109BDA",
+                                      "Arn"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "lambda:InvokeFunction",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "getPreviousBucketPolicyFnE629F282",
+                                      "Arn"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "stateMachineIdRoleDefaultPolicy0EA5EE64",
+                            "roles": [
+                              {
+                                "Ref": "stateMachineIdRole62656937"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "security-automation-remediate-weak-s3-policy/stateMachineId/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::StepFunctions::StateMachine",
+                  "aws:cdk:cloudformation:props": {
+                    "definitionString": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "{\"StartAt\":\"checkBucketPolicyTaskId\",\"States\":{\"checkBucketPolicyTaskId\":{\"Next\":\"isPolicyAccetable?\",\"OutputPath\":\"$.policy_compliance\",\"Type\":\"Task\",\"Resource\":\"",
+                          {
+                            "Fn::GetAtt": [
+                              "policyStrengthCheckerFnFC3801C6",
+                              "Arn"
+                            ]
+                          },
+                          "\",\"ResultPath\":\"$.policy_compliance\"},\"isPolicyAccetable?\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":true,\"Next\":\"Policy Compliant\"},{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":false,\"Next\":\"Wait X Minutes - AWS Config Lags Step Function\"}],\"Default\":\"Policy Remediation Failed\"},\"Policy Remediation Failed\":{\"Type\":\"Fail\",\"Error\":\"Check Logs\",\"Cause\":\"Policy Remediation Failed\"},\"isPolicyRemediationComplete?\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.status\",\"BooleanEquals\":true,\"Next\":\"Policy Compliant\"},{\"Variable\":\"$.status\",\"BooleanEquals\":false,\"Next\":\"Policy Remediation Failed\"}],\"Default\":\"Policy Remediation Failed\"},\"restoreLastPolicyTask\":{\"Next\":\"isPolicyRemediationComplete?\",\"Type\":\"Task\",\"Resource\":\"",
+                          {
+                            "Fn::GetAtt": [
+                              "putPolicyFn8D109BDA",
+                              "Arn"
+                            ]
+                          },
+                          "\",\"ResultPath\":\"$\"},\"getPreviousBucketPolicyTask\":{\"Next\":\"restoreLastPolicyTask\",\"Type\":\"Task\",\"Resource\":\"",
+                          {
+                            "Fn::GetAtt": [
+                              "getPreviousBucketPolicyFnE629F282",
+                              "Arn"
+                            ]
+                          },
+                          "\",\"ResultPath\":\"$\"},\"Wait X Minutes - AWS Config Lags Step Function\":{\"Type\":\"Wait\",\"Seconds\":60,\"Next\":\"getPreviousBucketPolicyTask\"},\"Policy Compliant\":{\"Type\":\"Succeed\",\"Comment\":\"Policy Compliance Evaluation Succeeded\"}},\"TimeoutSeconds\":300}"
+                        ]
+                      ]
+                    },
+                    "roleArn": {
+                      "Fn::GetAtt": [
+                        "stateMachineIdRole62656937",
+                        "Arn"
+                      ]
+                    },
+                    "tags": [
+                      {
+                        "key": "Owner",
+                        "value": "MystiqueInfoSecurity"
+                      },
+                      {
+                        "key": "ToKnowMore",
+                        "value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
+                      }
+                    ]
+                  }
+                }
+              },
+              "EventsRole": {
+                "id": "EventsRole",
+                "path": "security-automation-remediate-weak-s3-policy/stateMachineId/EventsRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "security-automation-remediate-weak-s3-policy/stateMachineId/EventsRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "events.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "tags": [
+                          {
+                            "key": "Owner",
+                            "value": "MystiqueInfoSecurity"
+                          },
+                          {
+                            "key": "ToKnowMore",
+                            "value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "security-automation-remediate-weak-s3-policy/stateMachineId/EventsRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "security-automation-remediate-weak-s3-policy/stateMachineId/EventsRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "states:StartExecution",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Ref": "stateMachineIdF7FDD688"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "stateMachineIdEventsRoleDefaultPolicy3AEB44AC",
+                            "roles": [
+                              {
+                                "Ref": "stateMachineIdEventsRoleF8F21970"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "puts3PolicyEventId": {
+            "id": "puts3PolicyEventId",
+            "path": "security-automation-remediate-weak-s3-policy/puts3PolicyEventId",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "security-automation-remediate-weak-s3-policy/puts3PolicyEventId/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "description": "Trigger an event for S3 PutBucketPolicy",
+                    "eventPattern": {
+                      "detail": {
+                        "eventSource": [
+                          "s3.amazonaws.com"
+                        ],
+                        "eventName": [
+                          "PutBucketPolicy"
+                        ]
+                      },
+                      "detail-type": [
+                        "AWS API Call via CloudTrail"
+                      ],
+                      "source": [
+                        "aws.s3"
+                      ]
+                    },
+                    "name": "put_s3_policy_event_MystiqueInfoSecurity",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Ref": "stateMachineIdF7FDD688"
+                        },
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "stateMachineIdEventsRoleF8F21970",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "s3bucket": {
+            "id": "s3bucket",
+            "path": "security-automation-remediate-weak-s3-policy/s3bucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "security-automation-remediate-weak-s3-policy/s3bucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "isLeakBucket",
+                        "value": "True"
+                      },
+                      {
+                        "key": "Owner",
+                        "value": "MystiqueInfoSecurity"
+                      },
+                      {
+                        "key": "ToKnowMore",
+                        "value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Notifications": {
+                "id": "Notifications",
+                "path": "security-automation-remediate-weak-s3-policy/s3bucket/Notifications"
+              }
+            }
+          },
+          "s3DataEventTrailId": {
+            "id": "s3DataEventTrailId",
+            "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId",
+            "children": {
+              "S3": {
+                "id": "S3",
+                "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/S3",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/S3/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                      "aws:cdk:cloudformation:props": {}
+                    }
+                  },
+                  "Notifications": {
+                    "id": "Notifications",
+                    "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/S3/Notifications"
+                  },
+                  "Policy": {
+                    "id": "Policy",
+                    "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/S3/Policy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/S3/Policy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
+                          "aws:cdk:cloudformation:props": {
+                            "bucket": {
+                              "Ref": "s3DataEventTrailIdS31824FE76"
+                            },
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "s3:GetBucketAcl",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "cloudtrail.amazonaws.com"
+                                  },
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "s3DataEventTrailIdS31824FE76",
+                                      "Arn"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "s3:PutObject",
+                                  "Condition": {
+                                    "StringEquals": {
+                                      "s3:x-amz-acl": "bucket-owner-full-control"
+                                    }
+                                  },
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "cloudtrail.amazonaws.com"
+                                  },
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "s3DataEventTrailIdS31824FE76",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/AWSLogs/",
+                                        {
+                                          "Ref": "AWS::AccountId"
+                                        },
+                                        "/*"
+                                      ]
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "LogGroup": {
+                "id": "LogGroup",
+                "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/LogGroup",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "retentionInDays": 7
+                  }
+                }
+              },
+              "LogsRole": {
+                "id": "LogsRole",
+                "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/LogsRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/LogsRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "cloudtrail.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/LogsRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/LogsRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "logs:PutLogEvents",
+                                    "logs:CreateLogStream"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "s3DataEventTrailIdLogGroupF8E9EB3D",
+                                      "Arn"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "s3DataEventTrailIdLogsRoleDefaultPolicy2CEFFC33",
+                            "roles": [
+                              {
+                                "Ref": "s3DataEventTrailIdLogsRoleCBDEF077"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudTrail::Trail",
+                  "aws:cdk:cloudformation:props": {
+                    "isLogging": true,
+                    "s3BucketName": {
+                      "Ref": "s3DataEventTrailIdS31824FE76"
+                    },
+                    "cloudWatchLogsLogGroupArn": {
+                      "Fn::GetAtt": [
+                        "s3DataEventTrailIdLogGroupF8E9EB3D",
+                        "Arn"
+                      ]
+                    },
+                    "cloudWatchLogsRoleArn": {
+                      "Fn::GetAtt": [
+                        "s3DataEventTrailIdLogsRoleCBDEF077",
+                        "Arn"
+                      ]
+                    },
+                    "enableLogFileValidation": true,
+                    "eventSelectors": [
+                      {
+                        "includeManagementEvents": true,
+                        "readWriteType": "WriteOnly",
+                        "dataResources": [
+                          {
+                            "type": "AWS::S3::Object",
+                            "values": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "s3bucketFBFA637E",
+                                        "Arn"
+                                      ]
+                                    },
+                                    "/*"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "includeGlobalServiceEvents": false,
+                    "isMultiRegionTrail": false
+                  }
+                }
+              }
+            }
+          },
+          "MonitoredS3Bucket": {
+            "id": "MonitoredS3Bucket",
+            "path": "security-automation-remediate-weak-s3-policy/MonitoredS3Bucket"
+          },
+          "CloudTrailForS3": {
+            "id": "CloudTrailForS3",
+            "path": "security-automation-remediate-weak-s3-policy/CloudTrailForS3"
+          },
+          "S3PolicyValidatorStateMachine": {
+            "id": "S3PolicyValidatorStateMachine",
+            "path": "security-automation-remediate-weak-s3-policy/S3PolicyValidatorStateMachine"
+          },
+          "sampleWeakS3Policy": {
+            "id": "sampleWeakS3Policy",
+            "path": "security-automation-remediate-weak-s3-policy/sampleWeakS3Policy"
+          },
+          "sampleRestrictiveS3Policy": {
+            "id": "sampleRestrictiveS3Policy",
+            "path": "security-automation-remediate-weak-s3-policy/sampleRestrictiveS3Policy"
+          }
+        }
+      }
+    }
+  }
+}
