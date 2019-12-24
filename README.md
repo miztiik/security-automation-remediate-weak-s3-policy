@@ -1,12 +1,12 @@
 # AWS Security Automation: Remediate Weak S3 Bucket Policies
 
-Amazon S3 has become the quintessential object storage mechanism for lot of businessess. But weak S3 policies have been the been of [many](https://www.engadget.com/2018/08/09/amazon-aws-error-exposes-31-000-godaddy-servers) [many](https://www.skyhighnetworks.com/cloud-security-blog/verizon-data-breach-two-easy-steps-to-prevent-aws-s3-leaks/) [business](https://businessinsights.bitdefender.com/worst-amazon-breaches). 
+Amazon S3 has become the quintessential object storage mechanism for lot of businessess. But weak S3 policies have been the bane of [many](https://www.engadget.com/2018/08/09/amazon-aws-error-exposes-31-000-godaddy-servers) [many](https://www.skyhighnetworks.com/cloud-security-blog/verizon-data-breach-two-easy-steps-to-prevent-aws-s3-leaks/) [businesses](https://businessinsights.bitdefender.com/worst-amazon-breaches). 
 
 Ever wondered how to solve this problem and do this efficiently at cloud scale?
 
-- What if you can automatically validate any changes to S3 Bucket policies?
-- What if, You can automatically approve the change if it is compliant to security standards?
-- What if, You can revoke the change change and notify SecOps if it is non compliant?
+- What if, you can automatically validate any changes to S3 Bucket policies?
+- What if, you can automatically approve the change if it is compliant to security standards?
+- What if, you can revoke the change change and notify SecOps if it is non compliant?
 
     That is exactly what we are going to do right now using, `AWS CloudTrail`, `AWS EventBridge`, `AWS StepFunctions` and`AWS Config`.
 
