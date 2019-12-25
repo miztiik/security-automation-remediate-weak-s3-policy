@@ -1,0 +1,94 @@
+{
+  "StartAt": "isNewPolicyPermissive",
+  "States": {
+    "isNewPolicyPermissive": {
+      "Next": "isPolicyAccetable?",
+      "OutputPath": "$.policy_compliance",
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:313487964768:function:is_policy_permissive_fn",
+      "ResultPath": "$.policy_compliance"
+    },
+    "isPolicyAccetable?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.policy_status.is_compliant",
+          "BooleanEquals": true,
+          "Next": "Policy Compliant"
+        },
+        {
+          "Variable": "$.policy_status.is_compliant",
+          "BooleanEquals": false,
+          "Next": "Wait X Minutes - AWS Config Lags RealTime Configs"
+        }
+      ],
+      "Default": "Policy Remediation Failed"
+    },
+    "Policy Remediation Failed": {
+      "Type": "Fail",
+      "Error": "Check Logs",
+      "Cause": "Policy Remediation Failed"
+    },
+    "isPolicyRemediationComplete?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.status",
+          "BooleanEquals": true,
+          "Next": "Policy Compliant"
+        },
+        {
+          "Variable": "$.status",
+          "BooleanEquals": false,
+          "Next": "Policy Remediation Failed"
+        }
+      ],
+      "Default": "Policy Remediation Failed"
+    },
+    "restoreLastPolicy": {
+      "Next": "isPolicyRemediationComplete?",
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:313487964768:function:put_policy_fn",
+      "ResultPath": "$"
+    },
+    "isPreviousPolicyAccetable?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.policy_status.is_compliant",
+          "BooleanEquals": false,
+          "Next": "Policy Remediation Failed"
+        },
+        {
+          "Variable": "$.policy_status.is_compliant",
+          "BooleanEquals": true,
+          "Next": "restoreLastPolicy"
+        }
+      ],
+      "Default": "Policy Remediation Failed"
+    },
+    "isPrevPolicyPermissive": {
+      "Next": "isPreviousPolicyAccetable?",
+      "OutputPath": "$.policy_compliance",
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:313487964768:function:is_policy_permissive_fn",
+      "ResultPath": "$.policy_compliance"
+    },
+    "getPreviousBucketPolicy": {
+      "Next": "isPrevPolicyPermissive",
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:313487964768:function:get_previous_bucket_policy_fn",
+      "ResultPath": "$"
+    },
+    "Wait X Minutes - AWS Config Lags RealTime Configs": {
+      "Type": "Wait",
+      "Seconds": 240,
+      "Next": "getPreviousBucketPolicy"
+    },
+    "Policy Compliant": {
+      "Type": "Succeed",
+      "Comment": "Policy Compliance Evaluation Succeeded"
+    }
+  },
+  "TimeoutSeconds": 420
+}
