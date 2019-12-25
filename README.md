@@ -66,7 +66,7 @@ Ever wondered how to solve this problem and do this efficiently at cloud scale?
 
         ```sh
         aws cloudformation deploy \
-                --template-file ./cdk.out/security-automation-remediate-weak-s3-policy.json \
+                --template-file ./cdk.out/security-automation-remediate-weak-s3-policy.template.json \
                 --stack-name "MiztiikAutomationStack" \
                 --capabilities CAPABILITY_IAM
         ```
