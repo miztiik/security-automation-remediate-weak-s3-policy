@@ -1,0 +1,70 @@
+{
+  "version": "0",
+  "id": "3887b7d8-fb59-9a14-7dd2-99f2caf00fc0",
+  "detail-type": "AWS API Call via CloudTrail",
+  "source": "aws.s3",
+  "account": "111122223333",
+  "time": "2019-12-23T18:22:07Z",
+  "region": "us-east-1",
+  "resources": [],
+  "detail": {
+    "eventVersion": "1.05",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAUR7KWXJQLWZZ56LRA",
+      "arn": "arn:aws:iam::111122223333:user/stone-for-you",
+      "accountId": "111122223333",
+      "accessKeyId": "ASIAUR7KWXJQICOMK432",
+      "userName": "stone-for-you",
+      "sessionContext": {
+        "attributes": {
+          "mfaAuthenticated": "false",
+          "creationDate": "2019-12-23T13:48:03Z"
+        }
+      },
+      "invokedBy": "signin.amazonaws.com"
+    },
+    "eventTime": "2019-12-23T18:22:07Z",
+    "eventSource": "s3.amazonaws.com",
+    "eventName": "PutBucketPolicy",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "1.2.10.20",
+    "userAgent": "signin.amazonaws.com",
+    "requestParameters": {
+      "bucketName": "security-automation-remed-s3bucketfbfa637e-16gt1jqlmsaf9",
+      "bucketPolicy": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "PublicRead",
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "arn:aws:iam::111122223333:root"
+            },
+            "Action": [
+              "s3:Put*"
+            ],
+            "Resource": "arn:aws:s3:::security-automation-remed-s3bucketfbfa637e-16gt1jqlmsaf9"
+          }
+        ]
+      },
+      "host": [
+        "s3.amazonaws.com"
+      ],
+      "policy": [
+        ""
+      ]
+    },
+    "responseElements": null,
+    "additionalEventData": {
+      "SignatureVersion": "SigV4",
+      "CipherSuite": "ECDHE-RSA-AES128-SHA",
+      "AuthenticationMethod": "AuthHeader",
+      "vpcEndpointId": "vpce-f40dc59e"
+    },
+    "requestID": "CA6DD47A83BD9B4A",
+    "eventID": "cd87cde3-cba5-4027-baea-8c76ba5312e0",
+    "eventType": "AwsApiCall",
+    "vpcEndpointId": "vpce-f40dc59e"
+  }
+}
