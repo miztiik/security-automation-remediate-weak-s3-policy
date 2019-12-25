@@ -9,10 +9,6 @@
 .. contactauthor:: miztiik@github issues
 """
 
-import boto3
-import os
-import json
-from botocore.exceptions import ClientError
 import logging
 
 __author__      = 'Mystique'
@@ -40,7 +36,7 @@ def set_logging(lv=global_args.LOG_LEVEL):
     '''
     logging.basicConfig(level=lv)
     logger = logging.getLogger()
-    logger.setLevel(global_args.LOG_LEVEL)
+    logger.setLevel(lv)
     # logging.basicConfig(format="[%(asctime)s] %(levelname)s [%(module)s.%(funcName)s:%(lineno)d] %(message)s", datefmt="%H:%M:%S"
     return logger
 
@@ -50,32 +46,32 @@ logger = set_logging(logging.INFO)
 
 def check_policy_strength(policy):
     # Default we are ASSUMING the policy will be compliant
-    policy_status = { "is_compliant": True }
+    policy_status = {"is_compliant": True}
 
     for st in policy['Statement']:
-      actions = st['Action']
-    
-      if isinstance(actions, str):
-        actions = [actions]
-    
-      if st['Effect'] == 'Allow' and st['Principal'] == '*':
-          for action in actions:
-              parts = action.split(':')
-              service = parts[0]
-              call = parts[1]
-              if call.startswith('Get') or call.startswith('Put'):
-                  policy_status = { 
-                      "is_compliant": False, 
-                      "reason": "Excessive permissive statement detected", 
-                      "statement": st 
-                  }
+        actions = st['Action']
+
+        if isinstance(actions, str):
+            actions = [actions]
+
+        if st['Effect'] == 'Allow' and st['Principal'] == '*':
+            for action in actions:
+                parts = action.split(':')
+                call = parts[1]
+                if call.startswith('Get') or call.startswith('Put'):
+                    policy_status = {
+                        "is_compliant": False,
+                        "reason": "Excessive permissive statement detected",
+                        "statement": st
+                    }
+
     return policy_status
 
 
 def lambda_handler(event, context):
     logger.info(f"Event:{event}")
     resp = {'status':False}
-    EVENT_TYPE="PutBucketPolicy"
+    EVENT_TYPE = "PutBucketPolicy"
     if 'detail' in event and 'eventName' in event.get('detail'):
         if event.get('detail').get('eventName') == EVENT_TYPE:
             new_policy = event.get('detail').get('requestParameters').get('bucketPolicy')
@@ -84,7 +80,7 @@ def lambda_handler(event, context):
                 resp['policy_status'] = check_policy_strength(new_policy)
                 resp['status'] = True
             else:
-                resp['error_message'] = f"No bucket policy found"
+                resp['error_message'] = "No bucket policy found"
     return resp
 
 if __name__ == '__main__':

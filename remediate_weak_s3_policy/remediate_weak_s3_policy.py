@@ -1,3 +1,4 @@
+import json
 from aws_cdk import (
     aws_lambda as _lambda,
     aws_s3 as _s3,
@@ -10,7 +11,6 @@ from aws_cdk import (
     aws_logs as _logs,
     core
 )
-import json
 
 class global_args:
     '''

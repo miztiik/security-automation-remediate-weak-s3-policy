@@ -9,11 +9,10 @@
 .. contactauthor:: miztiik@github issues
 """
 
-import boto3
-import os
-import json
-from botocore.exceptions import ClientError
 import logging
+import json
+import boto3
+from botocore.exceptions import ClientError
 
 
 __author__      = 'Mystique'
@@ -63,13 +62,13 @@ def lambda_handler(event, context):
         )
         last_config = response['configurationItems'][0]
         policy_obj = json.loads(last_config['supplementaryConfiguration']['BucketPolicy'])
-        
+
         # Buckets can have empty policy - so previous policy can be NONE
         if policy_obj['policyText']:
             resp['prev_bucket_policy'] = json.loads(policy_obj['policyText'])
         resp['resource_id'] = event['resource_id']
         resp['status'] = True
-    except Exception as e:
+    except ClientError as e:
         logger.error("Unable to get previous bucket policy")
         logger.error(f"ERROR:{str(e)}")
         resp['error_message'] = str(e)

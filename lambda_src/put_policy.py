@@ -9,11 +9,10 @@
 .. contactauthor:: miztiik@github issues
 """
 
-import boto3
-import os
 import json
-from botocore.exceptions import ClientError
 import logging
+import boto3
+from botocore.exceptions import ClientError
 
 
 __author__      = 'Mystique'
@@ -42,7 +41,7 @@ def set_logging(lv=global_args.LOG_LEVEL):
     '''
     logging.basicConfig(level=lv)
     logger = logging.getLogger()
-    logger.setLevel(global_args.LOG_LEVEL)
+    logger.setLevel(lv)
     # logging.basicConfig(format="[%(asctime)s] %(levelname)s [%(module)s.%(funcName)s:%(lineno)d] %(message)s", datefmt="%H:%M:%S"
     return logger
 
@@ -67,7 +66,7 @@ def put_policy(bucket, policy):
                 Bucket=bucket
             )
         resp['status'] = True
-    except Exception as e:
+    except ClientError as e:
         logger.error("Unable to put bucket policy")
         logger.error(f"ERROR:{str(e)}")
         resp['error_message'] = str(e)
@@ -82,7 +81,7 @@ def lambda_handler(event, context):
     # Mov status from response to parent dict - silently
     resp['status'] = resp['response'].pop('status', None)
     return resp
- 
+
 
 if __name__ == '__main__':
     lambda_handler({}, {})
