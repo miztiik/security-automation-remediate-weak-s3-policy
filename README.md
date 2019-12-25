@@ -81,18 +81,18 @@ Ever wondered how to solve this problem and do this efficiently at cloud scale?
 
     This is what, we are going to do now,
 
-    1. Check & **Confirm** `AWS Config` had begun tracking our bucket. You can check in the console, and very its bucket policy. There is usually a delay of 3~4 minutes for changes to appear on the console.
-        - **Wait** until it shows, before proceeding to next step
-    1. Add the `sampleRestrictiveS3Policy` to the `S3 Bucket` - Check the state function execution results - It should evaluate successfully and permits the use of this policy.
+    1. Check & **Confirm** that `AWS Config` had begun tracking our bucket. You can check that in the console, and verify the bucket policy. There is usually a delay of 3~4 minutes for changes to appear on the console.
+        - **Wait** until it shows up, before proceeding to next step
+    1. Add the `sampleRestrictiveS3Policy` to the `S3 Bucket` - Check the state function execution results - It should evaluate successfully and permits the use of this policy
     1. Now add the `SampleWeakS3Policy` - Wait for the state function to complete its evaluation, We should see the policy being `NON COMPLIANT` and reverts back to the `sampleRestrictiveS3Policy`
 
-    ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_success_00.png)
+        ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_success_00.png)
 
-    If you want to repeat the test again,  **Wait** until the new policy shows up in `AWS Config`.
+    1. If you want to repeat the test again,  **Wait** until the new policy shows up in `AWS Config`.
 
     **NOTE**: Be careful not to set off an infinite step function loop. Every lambda remediation with previous policy will trigger `PutBucketPolicy` event, If the previous happens to be `NON COMPLIANT` this automation has built-in safe guards, It will trigger remediation failure
 
-    ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_failure_00.png)
+        ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_failure_00.png)
 
     _If you happen to set off infinite loop, one easy way to break the loop is to `DISABLE` the event rule or stop the state machine `Execution`, until you fix your non compliances._
 
