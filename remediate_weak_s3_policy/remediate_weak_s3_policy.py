@@ -29,6 +29,7 @@ class RemediateWeakS3PolicyStack(core.Stack):
         # Defines an AWS Lambda resource
         with open("lambda_src/is_policy_permissive.py", encoding="utf8") as fp:
             is_policy_permissive_fn_handler_code = fp.read()
+
         is_policy_permissive_fn = _lambda.Function(
             self,
             id='policyStrengthCheckerFn',
@@ -169,8 +170,7 @@ class RemediateWeakS3PolicyStack(core.Stack):
             .next(_sfn.Choice(self, "isPolicyAccetable?")\
                 # .when(_sfn.Condition.string_equals("$.status", "True"), "isJobComplete?")\
                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", True), policy_compliant)\
-                .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), wait_x\
-                    .next(get_previous_bucket_policy_task)\
+                .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), get_previous_bucket_policy_task\
                         .next(is_prev_policy_permissive_task)\
                             .next(_sfn.Choice(self, "isPreviousPolicyAccetable?")
                                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), policy_remediation_failed)\
