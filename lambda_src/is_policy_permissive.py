@@ -9,12 +9,8 @@
 .. moduleauthor:: Mystique
 .. contactauthor:: miztiik@github issues
 """
-import boto3
-import os
-import json
-from botocore.exceptions import ClientError
-import logging
 
+import logging
 
 __author__ = 'Mystique'
 __email__ = 'miztiik@github'
@@ -39,7 +35,7 @@ def set_logging(lv=global_args.LOG_LEVEL):
     '''
     logging.basicConfig(level=lv)
     logger = logging.getLogger()
-    logger.setLevel(global_args.LOG_LEVEL)
+    logger.setLevel(lv)
     # logging.basicConfig(format="[%(asctime)s] %(levelname)s [%(module)s.%(funcName)s:%(lineno)d] %(message)s", datefmt="%H:%M:%S"
     return logger
 

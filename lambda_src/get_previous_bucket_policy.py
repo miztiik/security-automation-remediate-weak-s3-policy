@@ -9,12 +9,11 @@
 .. contactauthor:: miztiik@github issues
 """
 
-import boto3
-import os
 import json
-from botocore.exceptions import ClientError
 import logging
 
+import boto3
+from botocore.exceptions import ClientError
 
 __author__      = 'Mystique'
 __email__       = 'miztiik@github'
@@ -42,7 +41,7 @@ def set_logging(lv=global_args.LOG_LEVEL):
     '''
     logging.basicConfig(level=lv)
     logger = logging.getLogger()
-    logger.setLevel(global_args.LOG_LEVEL)
+    logger.setLevel(lv)
     # logging.basicConfig(format="[%(asctime)s] %(levelname)s [%(module)s.%(funcName)s:%(lineno)d] %(message)s", datefmt="%H:%M:%S"
     return logger
 
@@ -63,13 +62,13 @@ def lambda_handler(event, context):
         )
         last_config = response['configurationItems'][0]
         policy_obj = json.loads(last_config['supplementaryConfiguration']['BucketPolicy'])
-        
+
         # Buckets can have empty policy - so previous policy can be NONE
         if policy_obj['policyText']:
             resp['policy'] = json.loads(policy_obj['policyText'])
         resp['resource_id'] = event['resource_id']
         resp['status'] = True
-    except Exception as e:
+    except ClientError as e:
         logger.error("Unable to get previous bucket policy")
         logger.error(f"ERROR:{str(e)}")
         resp['error_message'] = str(e)

@@ -1,16 +1,16 @@
-from aws_cdk import (
-    aws_lambda as _lambda,
-    aws_s3 as _s3,
-    aws_iam as _iam,
-    aws_events as _events,
-    aws_events_targets as _targets,
-    aws_stepfunctions as _sfn,
-    aws_stepfunctions_tasks as _tasks,
-    aws_cloudtrail as _cloudtrail,
-    aws_logs as _logs,
-    core
-)
 import json
+
+from aws_cdk import aws_cloudtrail as _cloudtrail
+from aws_cdk import aws_events as _events
+from aws_cdk import aws_events_targets as _targets
+from aws_cdk import aws_iam as _iam
+from aws_cdk import aws_lambda as _lambda
+from aws_cdk import aws_logs as _logs
+from aws_cdk import aws_s3 as _s3
+from aws_cdk import aws_stepfunctions as _sfn
+from aws_cdk import aws_stepfunctions_tasks as _tasks
+from aws_cdk import core
+
 
 class global_args:
     '''
