@@ -152,8 +152,7 @@ class RemediateWeakS3PolicyStack(core.Stack):
             .next(_sfn.Choice(self, "isPolicyAccetable?")\
                 # .when(_sfn.Condition.string_equals("$.status", "True"), "isJobComplete?")\
                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", True), policy_compliant)\
-                .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), wait_x\
-                    .next(get_previous_bucket_policy_task)\
+                .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), get_previous_bucket_policy_task\
                         .next(is_prev_policy_permissive_task)\
                             .next(_sfn.Choice(self, "isPreviousPolicyAccetable?")
                                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), policy_remediation_failed)\
@@ -168,15 +167,14 @@ class RemediateWeakS3PolicyStack(core.Stack):
         """
         remediate_weak_policy_sfn_definition = is_new_policy_permissive_task\
             .next(_sfn.Choice(self, "isPolicyAccetable?")\
-                # .when(_sfn.Condition.string_equals("$.status", "True"), "isJobComplete?")\
                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", True), policy_compliant)\
                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), get_previous_bucket_policy_task\
                         .next(is_prev_policy_permissive_task)\
                             .next(_sfn.Choice(self, "isPreviousPolicyAccetable?")
-                                .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), policy_remediation_failed)\
                                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", True), restore_last_bucket_policy_task\
                                         .next(is_policy_remediation_complete) # State Function Choice
                                 )
+                                .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), policy_remediation_failed)\
                                 .otherwise(policy_remediation_failed)
                                 )
                     )
