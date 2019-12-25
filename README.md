@@ -92,7 +92,7 @@ Ever wondered how to solve this problem and do this efficiently at cloud scale?
 
     **NOTE**: Be careful not to set off an infinite step function loop. Every lambda remediation with previous policy will trigger `PutBucketPolicy` event, If the previous happens to be `NON COMPLIANT` this automation has built-in safe guards, It will trigger remediation failure
 
-        ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_failure_00.png)
+    ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_failure_00.png)
 
     _If you happen to set off infinite loop, one easy way to break the loop is to `DISABLE` the event rule or stop the state machine `Execution`, until you fix your non compliances._
 
