@@ -86,15 +86,15 @@ Ever wondered how to solve this problem and do this efficiently at cloud scale?
     1. Add the `sampleRestrictiveS3Policy` to the `S3 Bucket` - Check the state function execution results - It should evaluate successfully and permits the use of this policy.
     1. Now add the `SampleWeakS3Policy` - Wait for the state function to complete its evaluation, We should see the policy being `NON COMPLIANT` and reverts back to the `sampleRestrictiveS3Policy`
 
-    ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_success.png)
+    ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_success_00.png)
 
     If you want to repeat the test again,  **Wait** until the new policy shows up in `AWS Config`.
 
-    _**NOTE**: Be careful not to set off an infinite step function loop. Every lambda remediation with previous policy will trigger `PutBucketPolicy` event, If the previous happens to be `NON COMPLIANT` this automation has built-in safe guards, It will trigger remediation failure
+    **NOTE**: Be careful not to set off an infinite step function loop. Every lambda remediation with previous policy will trigger `PutBucketPolicy` event, If the previous happens to be `NON COMPLIANT` this automation has built-in safe guards, It will trigger remediation failure
 
-    ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_failure.png)
+    ![miztiik_security_automation_remediate_weak_s3_policy](images/miztiik_security_automation_remediate_weak_s3_policy_failure_00.png)
 
-    If you happen to set it off, one easy way to break the loop is to `DISABLE` the event rule or stop the state machine `Execution`, until you fix your non compliances._
+    _If you happen to set off infinite loop, one easy way to break the loop is to `DISABLE` the event rule or stop the state machine `Execution`, until you fix your non compliances._
 
     Now that we have confirmed the solution is working, you can extend the solution as required.
 
