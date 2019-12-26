@@ -8,4 +8,6 @@ aws_cdk.aws_events_targets
 aws-cdk.aws_stepfunctions
 aws-cdk.aws_stepfunctions_tasks
 aws_cdk.aws_cloudtrail
+aws_cdk.aws_sns
+aws_cdk.aws_sns_subscriptions
 aws_cdk.aws_logs
