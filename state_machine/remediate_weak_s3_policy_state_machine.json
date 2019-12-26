@@ -5,7 +5,7 @@
       "Next": "isPolicyAccetable?",
       "OutputPath": "$.policy_compliance",
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:313487964768:function:is_policy_permissive_fn",
+      "Resource": "arn:aws:lambda:us-east-1:111122223333:function:is_policy_permissive_fn",
       "ResultPath": "$.policy_compliance"
     },
     "isPolicyAccetable?": {
@@ -48,7 +48,7 @@
     "restoreLastPolicy": {
       "Next": "isPolicyRemediationComplete?",
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:313487964768:function:put_policy_fn",
+      "Resource": "arn:aws:lambda:us-east-1:111122223333:function:put_policy_fn",
       "ResultPath": "$"
     },
     "isPreviousPolicyAccetable?": {
@@ -71,13 +71,13 @@
       "Next": "isPreviousPolicyAccetable?",
       "OutputPath": "$.policy_compliance",
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:313487964768:function:is_policy_permissive_fn",
+      "Resource": "arn:aws:lambda:us-east-1:111122223333:function:is_policy_permissive_fn",
       "ResultPath": "$.policy_compliance"
     },
     "getPreviousBucketPolicy": {
       "Next": "isPrevPolicyPermissive",
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:313487964768:function:get_previous_bucket_policy_fn",
+      "Resource": "arn:aws:lambda:us-east-1:111122223333:function:get_previous_bucket_policy_fn",
       "ResultPath": "$"
     },
     "Wait X Minutes - AWS Config Lags RealTime Configs": {
