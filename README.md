@@ -12,7 +12,7 @@ Ever wondered how to solve this problem and do this efficiently at cloud scale?
 
   ![Miztiik AWS Security Automation: Remediate Weak S3 Bucket Policies](images/miztiik_security_automation_remediate_weak_s3_policy_architecture.png)
 
-  Follow this article in **[Youtube](https://youtu.be/a4gOXBrVe6w)**
+  Follow this article in **[Youtube](https://www.youtube.com/c/ValaxyTechnologies)**
 
   For every `PutBucketPolicy` event, we will check if the `Principal` is `*` and `Effect` is `Allow`. If it is the case, we remove this policy statement and restore the previous bucket policy from AWS Config.
 
@@ -35,7 +35,7 @@ Ever wondered how to solve this problem and do this efficiently at cloud scale?
         - If `NON COMPLIANT` retrieve previous bucket policy from AWS Config
         - Restore previous bucket policy
     - **EventBridge Rule**: Receives `PutBucketPolicy` events & triggers stepfuction
-    - All the necessary IAM Role and necessary permissions
+    - **IAM Roles**: For lambda and step functions with restrictive permissions
 
     _**Note**: Sample bucket policies to test the solution can be found in the output section of the cloudformation template_
 
@@ -48,6 +48,9 @@ Ever wondered how to solve this problem and do this efficiently at cloud scale?
       If you have AWS CDK installed you can close this repository and deploy the stack with,
 
         ```sh
+        # If you DONT have cdk installed
+        npm install -g aws-cdk
+
         git clone https://github.com/miztiik/security-automation-remediate-weak-s3-policy.git
         cd security-automation-remediate-weak-s3-policy
         source .env/bin/activate
@@ -73,7 +76,7 @@ Ever wondered how to solve this problem and do this efficiently at cloud scale?
 
 1. ## Testing the solution
 
-    In the `Ouputs` section of the cloudformation template we have,
+    In the `Outputs` section of the cloudformation template we have,
 
     - `S3 bucket` link for updating policy,
     - `SampleWeakS3Policy`
@@ -101,7 +104,7 @@ Ever wondered how to solve this problem and do this efficiently at cloud scale?
 1. ## Next Steps: Do Try This
 
     - Trigger notification to InfoSec team for every weak policy remediation failure
-    - Qurantine User/Role triggering multiple failurs
+    - Qurantine User/Role triggering multiple failures
     - Monitor against infinite loops
 
 1. ## Additional Comments
