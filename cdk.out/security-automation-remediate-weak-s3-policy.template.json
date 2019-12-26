@@ -386,21 +386,21 @@
           "Fn::Join": [
             "",
             [
-              "{\"StartAt\":\"isNewPolicyPermissive\",\"States\":{\"isNewPolicyPermissive\":{\"Next\":\"isPolicyAccetable?\",\"OutputPath\":\"$.policy_compliance\",\"Type\":\"Task\",\"Resource\":\"",
+              "{\"StartAt\":\"isNewPolicyPermissive\",\"States\":{\"isNewPolicyPermissive\":{\"Next\":\"isPolicyAcceptable?\",\"OutputPath\":\"$.policy_compliance\",\"Type\":\"Task\",\"Resource\":\"",
               {
                 "Fn::GetAtt": [
                   "policyStrengthCheckerFnFC3801C6",
                   "Arn"
                 ]
               },
-              "\",\"ResultPath\":\"$.policy_compliance\"},\"isPolicyAccetable?\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":true,\"Next\":\"Policy Compliant\"},{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":false,\"Next\":\"getPreviousBucketPolicy\"}],\"Default\":\"Policy Remediation Failed\"},\"Policy Remediation Failed\":{\"Type\":\"Fail\",\"Error\":\"Check Logs\",\"Cause\":\"Policy Remediation Failed\"},\"isPolicyRemediationComplete?\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.status\",\"BooleanEquals\":true,\"Next\":\"Policy Compliant\"},{\"Variable\":\"$.status\",\"BooleanEquals\":false,\"Next\":\"Policy Remediation Failed\"}],\"Default\":\"Policy Remediation Failed\"},\"restoreLastPolicy\":{\"Next\":\"isPolicyRemediationComplete?\",\"Type\":\"Task\",\"Resource\":\"",
+              "\",\"ResultPath\":\"$.policy_compliance\"},\"isPolicyAcceptable?\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":true,\"Next\":\"Policy Compliant\"},{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":false,\"Next\":\"getPreviousBucketPolicy\"}],\"Default\":\"Policy Remediation Failed\"},\"Policy Remediation Failed\":{\"Type\":\"Fail\",\"Error\":\"Check Logs\",\"Cause\":\"Policy Remediation Failed\"},\"isPolicyRemediationComplete?\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.status\",\"BooleanEquals\":true,\"Next\":\"Policy Compliant\"},{\"Variable\":\"$.status\",\"BooleanEquals\":false,\"Next\":\"Policy Remediation Failed\"}],\"Default\":\"Policy Remediation Failed\"},\"restoreLastPolicy\":{\"Next\":\"isPolicyRemediationComplete?\",\"Type\":\"Task\",\"Resource\":\"",
               {
                 "Fn::GetAtt": [
                   "putPolicyFn8D109BDA",
                   "Arn"
                 ]
               },
-              "\",\"ResultPath\":\"$\"},\"isPreviousPolicyAccetable?\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":true,\"Next\":\"restoreLastPolicy\"},{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":false,\"Next\":\"Policy Remediation Failed\"}],\"Default\":\"Policy Remediation Failed\"},\"isPrevPolicyPermissive\":{\"Next\":\"isPreviousPolicyAccetable?\",\"OutputPath\":\"$.policy_compliance\",\"Type\":\"Task\",\"Resource\":\"",
+              "\",\"ResultPath\":\"$\"},\"isPreviousPolicyAcceptable?\":{\"Type\":\"Choice\",\"Choices\":[{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":true,\"Next\":\"restoreLastPolicy\"},{\"Variable\":\"$.policy_status.is_compliant\",\"BooleanEquals\":false,\"Next\":\"Policy Remediation Failed\"}],\"Default\":\"Policy Remediation Failed\"},\"isPrevPolicyPermissive\":{\"Next\":\"isPreviousPolicyAcceptable?\",\"OutputPath\":\"$.policy_compliance\",\"Type\":\"Task\",\"Resource\":\"",
               {
                 "Fn::GetAtt": [
                   "policyStrengthCheckerFnFC3801C6",

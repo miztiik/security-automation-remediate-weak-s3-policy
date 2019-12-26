@@ -149,12 +149,12 @@ class RemediateWeakS3PolicyStack(core.Stack):
 
         """
         remediate_weak_policy_sfn_definition = is_new_policy_permissive_task\
-            .next(_sfn.Choice(self, "isPolicyAccetable?")\
+            .next(_sfn.Choice(self, "isPolicyAcceptable?")\
                 # .when(_sfn.Condition.string_equals("$.status", "True"), "isJobComplete?")\
                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", True), policy_compliant)\
                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), get_previous_bucket_policy_task\
                         .next(is_prev_policy_permissive_task)\
-                            .next(_sfn.Choice(self, "isPreviousPolicyAccetable?")
+                            .next(_sfn.Choice(self, "isPreviousPolicyAcceptable?")
                                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), policy_remediation_failed)\
                                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", True), restore_last_bucket_policy_task\
                                         .next(is_policy_remediation_complete) # State Function Choice
@@ -166,11 +166,11 @@ class RemediateWeakS3PolicyStack(core.Stack):
                 )
         """
         remediate_weak_policy_sfn_definition = is_new_policy_permissive_task\
-            .next(_sfn.Choice(self, "isPolicyAccetable?")\
+            .next(_sfn.Choice(self, "isPolicyAcceptable?")\
                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", True), policy_compliant)\
                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", False), get_previous_bucket_policy_task\
                         .next(is_prev_policy_permissive_task)\
-                            .next(_sfn.Choice(self, "isPreviousPolicyAccetable?")
+                            .next(_sfn.Choice(self, "isPreviousPolicyAcceptable?")
                                 .when(_sfn.Condition.boolean_equals("$.policy_status.is_compliant", True), restore_last_bucket_policy_task\
                                         .next(is_policy_remediation_complete) # State Function Choice
                                 )
@@ -224,7 +224,7 @@ class RemediateWeakS3PolicyStack(core.Stack):
         core.Tag.add(put_s3_policy_event,key="Owner",value=global_args.OWNER, include_resource_types=[])
         core.Tag.add(put_s3_policy_event, key="ToKnowMore",value=global_args.SOURCE_INFO)
 
-        # create s3 bucket
+        # Create s3 bucket
         pvt_bkt = _s3.Bucket(self, "s3bucket")
         core.Tag.add(pvt_bkt,key="isLeakBucket",value="True")
         core.Tag.add(pvt_bkt,key="Owner",value=global_args.OWNER)
