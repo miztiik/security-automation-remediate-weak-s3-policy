@@ -1,4 +1,4 @@
-# AWS Security Automation: Remediate Weak S3 Bucket Policies
+# 👮AWS Security Automation: Remediate Weak S3 Bucket Policies
 
 Amazon S3 has become the quintessential object storage mechanism for lot of businessess. But weak S3 policies have been the been of [many](https://www.engadget.com/2018/08/09/amazon-aws-error-exposes-31-000-godaddy-servers) [many](https://www.skyhighnetworks.com/cloud-security-blog/verizon-data-breach-two-easy-steps-to-prevent-aws-s3-leaks/) [business](https://businessinsights.bitdefender.com/worst-amazon-breaches). 
 
