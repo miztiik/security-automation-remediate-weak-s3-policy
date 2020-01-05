@@ -35,6 +35,10 @@
             "Value": "MystiqueInfoSecurity"
           },
           {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
+          },
+          {
             "Key": "ToKnowMore",
             "Value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
           }
@@ -63,6 +67,10 @@
           {
             "Key": "Owner",
             "Value": "MystiqueInfoSecurity"
+          },
+          {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
           },
           {
             "Key": "ToKnowMore",
@@ -111,6 +119,10 @@
           {
             "Key": "Owner",
             "Value": "MystiqueInfoSecurity"
+          },
+          {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
           },
           {
             "Key": "ToKnowMore",
@@ -168,6 +180,10 @@
             "Value": "MystiqueInfoSecurity"
           },
           {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
+          },
+          {
             "Key": "ToKnowMore",
             "Value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
           }
@@ -215,6 +231,10 @@
           {
             "Key": "Owner",
             "Value": "MystiqueInfoSecurity"
+          },
+          {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
           },
           {
             "Key": "ToKnowMore",
@@ -275,6 +295,10 @@
             "Value": "MystiqueInfoSecurity"
           },
           {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
+          },
+          {
             "Key": "ToKnowMore",
             "Value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
           }
@@ -319,6 +343,10 @@
           {
             "Key": "Owner",
             "Value": "MystiqueInfoSecurity"
+          },
+          {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
           },
           {
             "Key": "ToKnowMore",
@@ -430,6 +458,10 @@
             "Value": "MystiqueInfoSecurity"
           },
           {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
+          },
+          {
             "Key": "ToKnowMore",
             "Value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
           }
@@ -458,6 +490,10 @@
           {
             "Key": "Owner",
             "Value": "MystiqueInfoSecurity"
+          },
+          {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
           },
           {
             "Key": "ToKnowMore",
@@ -541,16 +577,20 @@
       "Properties": {
         "Tags": [
           {
-            "Key": "isLeakBucket",
-            "Value": "True"
-          },
-          {
             "Key": "Owner",
             "Value": "MystiqueInfoSecurity"
           },
           {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
+          },
+          {
             "Key": "ToKnowMore",
             "Value": "https://github.com/miztiik/security-automation-remediate-weak-s3-policy"
+          },
+          {
+            "Key": "isLeakBucket",
+            "Value": "True"
           }
         ]
       },
@@ -562,6 +602,22 @@
     },
     "s3DataEventTrailIdS31824FE76": {
       "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Owner",
+            "Value": "Mystique"
+          },
+          {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
+          },
+          {
+            "Key": "ToKnowMore",
+            "Value": "https://youtube.com/c/valaxytechnologies"
+          }
+        ]
+      },
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain",
       "Metadata": {
@@ -650,7 +706,21 @@
             }
           ],
           "Version": "2012-10-17"
-        }
+        },
+        "Tags": [
+          {
+            "Key": "Owner",
+            "Value": "Mystique"
+          },
+          {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
+          },
+          {
+            "Key": "ToKnowMore",
+            "Value": "https://youtube.com/c/valaxytechnologies"
+          }
+        ]
       },
       "Metadata": {
         "aws:cdk:path": "security-automation-remediate-weak-s3-policy/s3DataEventTrailId/LogsRole/Resource"
@@ -736,7 +806,21 @@
           }
         ],
         "IncludeGlobalServiceEvents": false,
-        "IsMultiRegionTrail": false
+        "IsMultiRegionTrail": false,
+        "Tags": [
+          {
+            "Key": "Owner",
+            "Value": "Mystique"
+          },
+          {
+            "Key": "OwnerProfile",
+            "Value": "https://github.com/miztiik"
+          },
+          {
+            "Key": "ToKnowMore",
+            "Value": "https://youtube.com/c/valaxytechnologies"
+          }
+        ]
       },
       "DependsOn": [
         "s3DataEventTrailIdLogsRoleDefaultPolicy2CEFFC33",
